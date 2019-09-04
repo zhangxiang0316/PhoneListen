@@ -1,11 +1,13 @@
 package com.zx.phonelisten;
 
+import android.app.KeyguardManager;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
+import android.os.PowerManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -16,7 +18,7 @@ import android.util.Log;
  * 类注释：
  * 备注：
  */
-public class PhoneListenService  extends Service {
+public class PhoneListenService extends Service {
     private static final String tag = "PhoneListenService";
 
     // 电话管理者对象
@@ -76,7 +78,15 @@ public class PhoneListenService  extends Service {
     }
 
     private void openDinding() {
-        OpenDing.openDing("com.alibaba.android.rimet",this);
+        //屏幕唤醒
+        PowerManager pm = (PowerManager) this.getSystemService(Context.POWER_SERVICE);
+        PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.SCREEN_DIM_WAKE_LOCK, "BootBroadcastReceiver");
+        wl.acquire();
+        //屏幕解锁
+        KeyguardManager km = (KeyguardManager) this.getSystemService(Context.KEYGUARD_SERVICE);
+        KeyguardManager.KeyguardLock kl = km.newKeyguardLock("BootBroadcastReceiver");
+        kl.disableKeyguard();
+        OpenDing.openDing("com.alibaba.android.rimet", this);
     }
 
     @Override

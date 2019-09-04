@@ -7,6 +7,9 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 处理拨出电话，允许程序监视,修改或放弃播出电话 -->
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <permission
         android:name="com.bkjk.infra.test.permission.ACCESS_BOOK_MANAGER"
