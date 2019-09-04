@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zx.phonelisten">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 读取电话的状态信息的权限 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 处理拨出电话，允许程序监视,修改或放弃播出电话 -->
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <permission
+        android:name="com.bkjk.infra.test.permission.ACCESS_BOOK_MANAGER"
+        android:protectionLevel="normal" /> <!-- 使用我们定义的权限进行权限验证 -->
+    <uses-permission android:name="com.bkjk.infra.test.permission.ACCESS_BOOK_MANAGER" />
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <service android:name=".PhoneListenService" />
+    </application>
+
+</manifest>
